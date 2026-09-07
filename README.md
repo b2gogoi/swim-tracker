@@ -9,3 +9,6 @@ echo "npm run lint" > .husky/pre-commit
 
 # .husky/commit-msg
 echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
+
+
+npx vercel link
