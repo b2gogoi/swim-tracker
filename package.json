@@ -12,7 +12,10 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:studio": "drizzle-kit studio",
-    "test": "vitest run"
+    "test:all": "vitest run",
+    "test:db": "vitest run db/db.test.ts",
+    "test:parseTime": "vitest run lib/ingestion/parse-time.test.ts",
+    "test:entityResolver": "vitest run lib/entityResolver.test.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
