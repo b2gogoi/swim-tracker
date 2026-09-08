@@ -1,6 +1,8 @@
+// db/db.test.ts (add this test)
 import { describe, it, expect } from 'vitest';
 import { sql } from 'drizzle-orm';
 import { db } from './index';
+import { rawIngestionLog } from './schema';
 
 describe('Drizzle + Neon connection', () => {
   it('connects and can run a trivial query', async () => {
@@ -17,5 +19,10 @@ describe('Drizzle + Neon connection', () => {
       ) AS migration_table_exists
     `);
     expect(result.rows[0].migration_table_exists).toBe(true);
+  });
+
+  it('raw_ingestion_log table is queryable via the ORM client', async () => {
+    const rows = await db.select().from(rawIngestionLog).limit(1);
+    expect(Array.isArray(rows)).toBe(true);
   });
 });
