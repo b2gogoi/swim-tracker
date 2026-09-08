@@ -1,0 +1,169 @@
+{
+  "id": "4a6a4828-c337-46ea-8c8c-66526e37b0de",
+  "prevId": "13592d82-5126-4ee0-95c0-c7d87d915de1",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.meets": {
+      "name": "meets",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.raw_ingestion_log": {
+      "name": "raw_ingestion_log",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "meet_id": {
+          "name": "meet_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "page_number": {
+          "name": "page_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_event_header": {
+          "name": "raw_event_header",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_line_text": {
+          "name": "raw_line_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_tokens": {
+          "name": "raw_tokens",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_extracted_club": {
+          "name": "raw_extracted_club",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_extracted_name": {
+          "name": "raw_extracted_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raw_extracted_time": {
+          "name": "raw_extracted_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bounding_box": {
+          "name": "bounding_box",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_hash": {
+          "name": "content_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "raw_ingestion_log_content_hash_idx": {
+          "name": "raw_ingestion_log_content_hash_idx",
+          "columns": [
+            {
+              "expression": "content_hash",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "raw_ingestion_log_meet_id_meets_id_fk": {
+          "name": "raw_ingestion_log_meet_id_meets_id_fk",
+          "tableFrom": "raw_ingestion_log",
+          "tableTo": "meets",
+          "columnsFrom": [
+            "meet_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

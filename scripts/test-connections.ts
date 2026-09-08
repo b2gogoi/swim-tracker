@@ -29,7 +29,7 @@ async function testBlob() {
 async function main() {
   console.log('Testing environment connections...\n');
   await testDatabase();
-//   await testBlob();
+  await testBlob();
   console.log('\n✅ All connections verified successfully.');
 }
 

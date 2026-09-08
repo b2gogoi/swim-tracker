@@ -1,0 +1,1 @@
+ALTER TABLE "raw_ingestion_log" ALTER COLUMN "meet_id" SET NOT NULL;
