@@ -29,6 +29,13 @@
       "when": 1788859209512,
       "tag": "0003_meet_id_required",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788864686559,
+      "tag": "0004_canonical_relational_schema",
+      "breakpoints": true
     }
   ]
 }
